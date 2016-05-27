@@ -15,6 +15,12 @@
     <![endif]-->
 
     <script src="../rooster/jquery.rooster.js"></script>
+
+    <script>
+        $(function() {
+            $('.timer').rooster();
+        })
+    </script>
 </head>
 
 <body>
@@ -22,8 +28,7 @@
         <div class="row">
             <div class="col-sm-4"><!--offset--></div>
             <div class="col-sm-4">
-                <div class="well timer" data-rooster-seconds=10 data-rooster-onComplete="alert('Timer complete!');">
-                    00:10
+                <div class="well timer" data-rooster-seconds=60 data-rooster-onComplete="alert('Timer complete!');">
                 </div>
                 <button class="btn-primary" onclick="$('.timer').rooster('start')">
                     Start the Final Countdown

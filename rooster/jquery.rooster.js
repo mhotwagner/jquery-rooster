@@ -41,25 +41,26 @@
             el.html(displayTime);
         }
 
+        var onInterval = function() {
+            ms -= INTERVAL;
+            updateTimer();
+            if (ms > 0) {
+                return;
+            }
+            clearInterval(el.countdown);
+            if (opts.onComplete) {
+                eval(opts.onComplete);
+            }
+        };
+
         switch (action) {
             case 'start':
-                el.countdown = setInterval(
-                    function() {
-                        ms -= INTERVAL;
-                        updateTimer();
-                        if (ms > 0) {
-                            return;
-                        }
-                        clearInterval(el.countdown);
-                        if (opts.onComplete) {
-                            eval(opts.onComplete);
-                        }
-                    },
-                    INTERVAL
-                );
+                // Start the Timer
+                el.countdown = setInterval(onInterval, INTERVAL);
                 return this;
             default:
-                alert('default action');
+                // Initialize
+                updateTimer();
                 return this;
         }
     };
