@@ -22,8 +22,8 @@
         <div class="row">
             <div class="col-sm-4"><!--offset--></div>
             <div class="col-sm-4">
-                <div class="well timer">
-                    01:00
+                <div class="well timer" data-rooster-seconds=10 data-rooster-onComplete="alert('Timer complete!');">
+                    00:10
                 </div>
                 <button class="btn-primary" onclick="$('.timer').rooster('start')">
                     Start the Final Countdown
