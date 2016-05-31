@@ -3,6 +3,7 @@
 ## Description
 Rooster is a simple jquery plugin that injects a timer, manages the countdown, and handles a few events based on the timer state.
 
+
 ## Usage
 Define an element in your DOM with optional data attributes.
 ```html
@@ -32,9 +33,12 @@ $('.different-timer').rooster(
     }
   }
 );
+```
+
 
 ## Examples
 Basic example: http://mhotwagner.github.io/jquery-rooster/examples/basic.html
+
 
 ## Future additions
 
