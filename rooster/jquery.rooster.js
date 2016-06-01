@@ -49,9 +49,11 @@
             }
             clearInterval(el.countdown);
             if (opts.onComplete) {
-                if (typeOf(otps.onComplete) == 'string') {
+                if (typeof(opts.onComplete) == 'string') {
                     eval(opts.onComplete);
-                } else if (typeOf(opts.onComplete) == 'function') {
+                } else if (typeof(opts.onComplete) == 'function') {
+                    console.log('handling a function!')
+                    console.log(opts.onComplete)
                     opts.onComplete();
                 }
             }
