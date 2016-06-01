@@ -51,7 +51,7 @@
             if (opts.onComplete) {
                 if (typeOf(otps.onComplete) == 'string') {
                     eval(opts.onComplete);
-                } else if (typeOf(opts.onComplete) == 'function')
+                } else if (typeOf(opts.onComplete) == 'function') {
                     opts.onComplete();
                 }
             }
