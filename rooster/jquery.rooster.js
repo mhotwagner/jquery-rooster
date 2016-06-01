@@ -52,8 +52,6 @@
                 if (typeof(opts.onComplete) == 'string') {
                     eval(opts.onComplete);
                 } else if (typeof(opts.onComplete) == 'function') {
-                    console.log('handling a function!')
-                    console.log(opts.onComplete)
                     opts.onComplete();
                 }
             }
