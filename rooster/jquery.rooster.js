@@ -24,7 +24,7 @@
 
         var opts = $.extend({}, defaults, options);
 
-        var ms = opts.seconds * 1000;
+        var ms = opts.seconds * 1000 + INTERVAL;
 
 
         function updateTimer() {
@@ -41,13 +41,18 @@
             el.html(displayTime);
         }
 
-        var onInterval = function() {
+        function clearRoosterTimer() {
+            clearInterval(el.data('countdown'));
+            el.data('countdown', null);
+        }
+
+        function onInterval() {
             ms -= INTERVAL;
             updateTimer();
             if (ms > 0) {
                 return;
             }
-            clearInterval(el.countdown);
+            clearRoosterTimer();
             if (opts.onComplete) {
                 if (typeof(opts.onComplete) == 'string') {
                     eval(opts.onComplete);
@@ -55,12 +60,15 @@
                     opts.onComplete();
                 }
             }
-        };
+        }
 
         switch (action) {
             case 'start':
                 // Start the Timer
-                el.countdown = setInterval(onInterval, INTERVAL);
+                el.data('countdown', setInterval(onInterval, INTERVAL));
+                return this;
+            case 'stop':
+                clearRoosterTimer();
                 return this;
             default:
                 // Initialize
