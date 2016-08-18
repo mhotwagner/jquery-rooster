@@ -19,20 +19,20 @@
             seconds: el.data('rooster-seconds') || 0,
             onComplete: el.data('rooster-oncomplete') || null,
             onStart: el.data('rooster-onstart') || null,
-            onStop: el.data('rooster-onstop') || null
+            onStop: el.data('rooster-onstop') || null,
+            state: el.data('state') || 'idle'
         };
 
         var opts = $.extend({}, defaults, options);
 
-        var ms = opts.seconds * 1000 + INTERVAL;
-
+        var milliseconds = opts.seconds * 1000 + INTERVAL;
 
         function updateTimer() {
-            var minutes = Math.floor((ms/1000)/60);
+            var minutes = Math.floor((milliseconds/1000)/60);
             minutes = minutes.toString();
             while (minutes.length < 2) minutes = '0' + minutes;
 
-            var seconds = Math.floor(ms/1000) % 60;
+            var seconds = Math.floor(milliseconds/1000) % 60;
             seconds = seconds.toString();
             while (seconds.length < 2) seconds = '0' + seconds;
 
@@ -47,9 +47,9 @@
         }
 
         function onInterval() {
-            ms -= INTERVAL;
+            milliseconds -= INTERVAL;
             updateTimer();
-            if (ms > 0) {
+            if (milliseconds > 0) {
                 return;
             }
             clearRoosterTimer();
@@ -65,9 +65,11 @@
         switch (action) {
             case 'start':
                 // Start the Timer
+                el.data('state', 'active');
                 el.data('countdown', setInterval(onInterval, INTERVAL));
                 return this;
             case 'stop':
+                el.data('state', 'idle');
                 clearRoosterTimer();
                 return this;
             default:
