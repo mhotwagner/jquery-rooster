@@ -1,4 +1,7 @@
 
+function hasAttr(o, attr) {
+    return $(o).attr(attr) != undefined;
+}
 
 
 (function ( $ ) {
@@ -20,7 +23,9 @@
             onComplete: el.data('rooster-oncomplete') || null,
             onStart: el.data('rooster-onstart') || null,
             onStop: el.data('rooster-onstop') || null,
-            state: el.data('state') || 'idle'
+            includeMinutes: hasAttr(el, 'data-rooster-includeminutes') ? el.data('rooster-includeminutes') : true,
+
+            state: el.data('state') || 'idle',
         };
 
         var opts = $.extend({}, defaults, options);
@@ -28,16 +33,24 @@
         var milliseconds = opts.seconds * 1000 + INTERVAL;
 
         function updateTimer() {
-            var minutes = Math.floor((milliseconds/1000)/60);
-            minutes = minutes.toString();
-            while (minutes.length < 2) minutes = '0' + minutes;
+            var displayTime;
+            var seconds;
+            if (opts.includeMinutes) {
+                var minutes = Math.floor((milliseconds / 1000) / 60);
+                minutes = minutes.toString();
+                while (minutes.length < 2) minutes = '0' + minutes;
 
-            var seconds = Math.floor(milliseconds/1000) % 60;
-            seconds = seconds.toString();
-            while (seconds.length < 2) seconds = '0' + seconds;
+                seconds = Math.floor(milliseconds / 1000) % 60;
+                seconds = seconds.toString();
+                while (seconds.length < 2) seconds = '0' + seconds;
 
-            var displayTime = minutes + ':' + seconds;
+                displayTime = minutes + ':' + seconds;
+            } else {
+                seconds = Math.floor(milliseconds / 1000);
+                seconds = seconds.toString();
 
+                displayTime = seconds;
+            }
             el.html(displayTime);
         }
 
