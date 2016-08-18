@@ -18,23 +18,77 @@
 
     <script>
         $(function() {
-            $('.timer').rooster();
+            $('.basic-timer').rooster();
+            $('.seconds-timer').rooster();
         })
     </script>
+    <style>
+        body {
+            margin-top: 1em;
+            font-size: 16px;
+            line-height: 1.5em;
+        }
+        div {
+            max-width: 960px;
+        }
+        code {
+            padding: .5em;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container-fluid" style="margin-top: 8em;">
+    <div class="container-fluid outer-container">
+        <hr/>
         <div class="row">
+            <h1>jQuery-Rooster!</h1>
+            <p>Rooster is a simple countdown timer, with the explicit goal of keeping out the cruft.</p>
+        </div>
+        <hr/>
+
+        <div class="row">
+            <dl>
+                <dt>
+                <h3>Seconds Only</h3>
+                </dt>
+                <dd>
+                    <code>
+                        &lt;div data-rooster-seconds=60 data-rooster-onComplete="alert('Timer complete!');"&gt;&lt;/div&gt;
+                    </code>
+                </dd>
+            </dl>
             <div class="col-sm-4"><!--offset--></div>
             <div class="col-sm-4">
-                <div class="well timer" data-rooster-seconds=60 data-rooster-onComplete="alert('Timer complete!');">
+                <div class="well basic-timer" data-rooster-seconds=60 data-rooster-onComplete="alert('Timer complete!');">
                 </div>
-                <button class="btn-primary" onclick="$('.timer').rooster('start')">
-                    Start the Final Countdown
+                <button class="btn-primary" onclick="$('.basic-timer').rooster('start')">
+                    Cock-a-Doodle-Doo!
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <dl>
+                <dt>
+                    <h3>Seconds Only</h3>
+                </dt>
+                <dd>
+                    <code>
+                        &lt;div data-rooster-seconds=60 data-rooster-includeMinutes="false" data-rooster-onComplete="alert('Timer complete!');"&gt;&lt;/div&gt;
+                    </code>
+                </dd>
+            </dl>
+            <div class="col-sm-4"><!--offset--></div>
+            <div class="col-sm-4">
+                <div class="well seconds-timer" data-rooster-seconds=60 data-rooster-includeMinutes="false" data-rooster-onComplete="alert('Timer complete!');">
+                </div>
+                <button class="btn-primary" onclick="$('.seconds-timer').rooster('start')">
+                    Cock-a-Doodle-Doo!
                 </button>
             </div>
         </div>
     </div>
+
 </body>
 </html>
